@@ -1,7 +1,283 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
-div {
-    color: #f00;
+
+:root {
+    --primary-color: #238636;
+    --secondary-color: #1f6feb;
+    --accent-color: #f85149;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --border-color: #30363d;
+    --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.content {
+    text-align: center;
+    z-index: 2;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.logo-section {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    animation: float 3s ease-in-out infinite;
+}
+
+.github-logo {
+    width: 80px;
+    height: 80px;
+    color: var(--text-primary);
+    filter: drop-shadow(0 4px 20px rgba(35, 134, 54, 0.3));
+    transition: transform 0.3s ease;
+}
+
+.github-logo:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.title {
+    font-size: 4rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--secondary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+    animation: gradientShift 3s ease infinite;
+}
+
+.welcome-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.welcome {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-transform: lowercase;
+}
+
+.dev-badge {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(35, 134, 54, 0.4);
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.dev-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(35, 134, 54, 0.6);
+}
+
+.dev-section {
+    margin-top: 3rem;
+}
+
+.dev-label {
+    display: inline-block;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    padding: 1rem 2.5rem;
+    border: 2px solid var(--accent-color);
+    border-radius: 12px;
+    background: rgba(248, 81, 73, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.dev-label::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(248, 81, 73, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.dev-label:hover::before {
+    left: 100%;
+}
+
+.dev-label:hover {
+    background: rgba(248, 81, 73, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(248, 81, 73, 0.5);
+}
+
+/* 背景装饰 */
+.background-decoration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.gradient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.3;
+    animation: orbFloat 20s ease-in-out infinite;
+}
+
+.orb-1 {
+    width: 500px;
+    height: 500px;
+    background: var(--gradient-1);
+    top: -200px;
+    left: -200px;
+    animation-delay: 0s;
+}
+
+.orb-2 {
+    width: 400px;
+    height: 400px;
+    background: var(--gradient-2);
+    bottom: -150px;
+    right: -150px;
+    animation-delay: 5s;
+}
+
+.orb-3 {
+    width: 350px;
+    height: 350px;
+    background: var(--gradient-3);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: 10s;
+}
+
+/* 动画 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes orbFloat {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(50px, -50px) scale(1.1);
+    }
+    66% {
+        transform: translate(-30px, 30px) scale(0.9);
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+    }
+    
+    .welcome {
+        font-size: 1.2rem;
+    }
+    
+    .dev-badge {
+        font-size: 1rem;
+        padding: 0.4rem 1.2rem;
+    }
+    
+    .dev-label {
+        font-size: 1.4rem;
+        padding: 0.8rem 2rem;
+    }
+    
+    .github-logo {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .orb-1, .orb-2, .orb-3 {
+        width: 300px;
+        height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 2rem;
+    }
+    
+    .welcome-text {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
 }
